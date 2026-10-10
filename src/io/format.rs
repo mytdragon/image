@@ -326,7 +326,7 @@ impl ImageFormat {
             ImageFormat::OpenExr => cfg!(feature = "exr"),
             ImageFormat::Pnm => cfg!(feature = "pnm"),
             ImageFormat::Farbfeld => cfg!(feature = "ff"),
-            ImageFormat::Avif => cfg!(feature = "avif"),
+            ImageFormat::Avif => cfg!(feature = "avif-decode"),
             ImageFormat::Qoi => cfg!(feature = "qoi"),
             #[allow(deprecated)]
             ImageFormat::Pcx => false,
@@ -348,7 +348,7 @@ impl ImageFormat {
             ImageFormat::Tga => cfg!(feature = "tga"),
             ImageFormat::Pnm => cfg!(feature = "pnm"),
             ImageFormat::Farbfeld => cfg!(feature = "ff"),
-            ImageFormat::Avif => cfg!(feature = "avif"),
+            ImageFormat::Avif => cfg!(feature = "avif-encode"),
             ImageFormat::WebP => cfg!(feature = "webp"),
             ImageFormat::OpenExr => cfg!(feature = "exr"),
             ImageFormat::Qoi => cfg!(feature = "qoi"),

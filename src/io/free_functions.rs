@@ -82,7 +82,7 @@ pub(crate) fn encoder_for_format<'a, W: Write + Seek>(
         ImageFormat::OpenExr => Box::new(openexr::OpenExrEncoder::new(buffered_write)),
         #[cfg(feature = "tiff")]
         ImageFormat::Tiff => Box::new(tiff::TiffEncoder::new(buffered_write)),
-        #[cfg(feature = "avif")]
+        #[cfg(feature = "avif-encode")]
         ImageFormat::Avif => Box::new(avif::AvifEncoder::new(buffered_write)),
         #[cfg(feature = "qoi")]
         ImageFormat::Qoi => Box::new(qoi::QoiEncoder::new(buffered_write)),

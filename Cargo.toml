@@ -42,13 +42,13 @@ num-traits = { version = "0.2.0" }
 
 # Optional dependencies
 color_quant = { version = "1.1", optional = true }
-dav1d = { version = "0.11.0", optional = true }
 exr = { version = "1.74.0", default-features = false, optional = true }
 gif = { version = "0.14.0", optional = true }
 image-webp = { version = "0.2.0", optional = true }
 mp4parse = { version = "0.17.0", optional = true }
 png = { version = "0.18.0", optional = true }
 qoi = { version = "0.4", optional = true }
+rav1d = { git = "https://github.com/memorysafety/rav1d", default-features = false, features = ["bitdepth_8", "bitdepth_16"], optional = true }
 ravif = { version = "0.13", default-features = false, optional = true }
 rayon = { version = "1.7.0", optional = true }
 rgb = { version = "0.8.48", default-features = false, optional = true }
@@ -69,7 +69,9 @@ default = ["rayon", "default-formats"]
 
 # Format features
 default-formats = ["avif", "bmp", "dds", "exr", "ff", "gif", "hdr", "ico", "jpeg", "png", "pnm", "qoi", "tga", "tiff", "webp"]
-avif = ["dep:ravif", "dep:rgb"]
+avif = ["avif-encode", "avif-decode"]
+avif-encode = ["dep:ravif", "dep:rgb"]
+avif-decode = ["dep:mp4parse", "dep:rav1d"]
 bmp = []
 dds = []
 exr = ["dep:exr"]
@@ -87,9 +89,8 @@ webp = ["dep:image-webp"]
 
 # Other features
 rayon = ["dep:rayon", "ravif?/threading", "exr?/rayon"] # Enables multi-threading
-nasm = ["ravif?/asm"] # Enables use of nasm by rav1e (requires nasm to be installed)
+nasm = ["ravif?/asm", "rav1d?/asm"] # Enables use of nasm by rav1e and rav1d (requires nasm to be installed)
 color_quant = ["dep:color_quant"] # Enables color quantization
-avif-native = ["dep:mp4parse", "dep:dav1d"] # Enable native dependency libdav1d
 benchmarks = [] # Build some inline benchmarks. Useful only during development (requires nightly Rust)
 serde = ["dep:serde"]
 

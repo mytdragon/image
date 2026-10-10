@@ -177,7 +177,7 @@ impl<'a, R: 'a + BufRead + Seek> ImageReader<R> {
         #[allow(unreachable_patterns)]
         // Default is unreachable if all features are supported.
         Ok(match format {
-            #[cfg(feature = "avif-native")]
+            #[cfg(feature = "avif-decode")]
             ImageFormat::Avif => Box::new(avif::AvifDecoder::new(reader)?),
             #[cfg(feature = "png")]
             ImageFormat::Png => Box::new(png::PngDecoder::with_limits(reader, limits_for_png)?),

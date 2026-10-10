@@ -202,7 +202,7 @@ pub use crate::images::flat;
 ///
 /// | Feature | Format   | Notes
 /// | ------- | -------- | -----
-/// | `avif`  | AVIF     | Decoding requires the `avif-native` feature, uses the libdav1d C library.
+/// | `avif`  | AVIF     | Enables both `avif-encode` and `avif-decode`.
 /// | `bmp`   | BMP      |
 /// | `dds`   | DDS      | Only decoding is supported.
 /// | `exr`   | OpenEXR  |
@@ -240,7 +240,7 @@ pub use crate::images::flat;
 ///
 /// Re-exports of dependencies that reach version `1` will be discussed when it happens.
 pub mod codecs {
-    #[cfg(any(feature = "avif", feature = "avif-native"))]
+    #[cfg(any(feature = "avif-encode", feature = "avif-decode"))]
     pub mod avif;
     #[cfg(feature = "bmp")]
     pub mod bmp;
